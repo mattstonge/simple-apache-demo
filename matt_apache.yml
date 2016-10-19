@@ -12,7 +12,7 @@
 
     - name: Copy Content
       copy: > 
-        src=/var/lib/awx/projects/matt_project/index.html
+        src=./index.html
         dest=/var/www/html/index.html
         owner=root
         group=root
