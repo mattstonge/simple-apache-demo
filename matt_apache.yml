@@ -1,0 +1,38 @@
+---
+- name: My test apache deployment playbook
+  vars: 
+    apachever: 2.4.6-40.el7_2.4.x86_64
+
+  tasks:
+    - name: Install Apache
+      yum: >
+        name=httpd-{{ apachever }}
+        state=installed
+      tags: installation
+
+    - name: Copy Content
+      copy: > 
+        src=/var/lib/awx/projects/matt_project/index.html
+        dest=/var/www/html/index.html
+        owner=root
+        group=root
+        mode=0744
+      tags: content
+
+    - name: Start Apache
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+      tags: services
+
+    - name: Configure Firewall
+      firewalld:  
+        immediate: yes
+        service: http
+        permanent: yes
+        zone: public
+        state: enabled
+      tags: configuration
+
+
