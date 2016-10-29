@@ -5,14 +5,14 @@
 
   tasks:
     - name: Install Apache
-      yum: >
+      yum: 
         name=httpd-{{ apachever }}
         state=installed
       tags: installation
 
     - name: Copy Content
-      copy: > 
-        src=./index.html
+      copy:  
+        src=index.html
         dest=/var/www/html/index.html
         owner=root
         group=root
