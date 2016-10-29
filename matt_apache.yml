@@ -1,5 +1,6 @@
 ---
 - name: My test apache deployment playbook
+  hosts: web
   vars: 
     apachever: 2.4.6-40.el7_2.4.x86_64
 
